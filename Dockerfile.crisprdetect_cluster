@@ -27,31 +27,10 @@ RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID crispr
 
 #RUN groupadd -r crispr && useradd -r -s /bin/sh -g crispr crispr
 
-
-#WORKDIR /build
+WORKDIR /build
 
 COPY ./CRISPRDetect_2.4 /build/CRISPRDetect_2.4
 
-WORKDIR /build/CRISPRDetect_2.4
-
-#RUN wget -q https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.10.1/ncbi-blast-2.10.1+-x64-linux.tar.gz \
-#    && tar -zxf ncbi-blast-2.10.1+-x64-linux.tar.gz \
-#    && rm ncbi-blast-2.10.1+-x64-linux.tar.gz \
-#    && git clone https://github.com/davidchyou/CRISPRDetect_2.4.git \
-#    && cd CRISPRDetect_2.4 \
-#    && unzip CRISPRDetect_2.4.zip \
-#    && rm CRISPRDetect_2.4.zip \
-#    && cp /build/ncbi-blast-2.10.1+/bin/blastn /build/CRISPRDetect_2.4/CRISPRDetect_2.4 \
-#    && rm -rf /build/ncbi-blast-2.10.1+
-
-RUN tar -zxf ncbi-blast-2.10.1+-x64-linux.tar.gz \
-    && rm ncbi-blast-2.10.1+-x64-linux.tar.gz \
-    && unzip CRISPRDetect_2.4.zip \
-    && rm CRISPRDetect_2.4.zip \
-    && cp ./ncbi-blast-2.10.1+/bin/blastn ./CRISPRDetect_2.4 \
-    && rm -rf ./ncbi-blast-2.10.1+
-
-#COPY ./bin /build/bin
 COPY ./Scripts /build/bin
 
 #RUN chown -R crispr:crispr /build \
