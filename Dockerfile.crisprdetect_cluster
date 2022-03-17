@@ -61,6 +61,9 @@ RUN apt-get update && apt-get install -y apt-utils \
     && apt-get clean \
     && pip3 install biopython pandas python-magic
 
+RUN apt-get update && apt-get install -y parallel
+RUN yes 'will cite' | parallel --citation
+
 #RUN groupadd -r crispr && useradd -r -s /bin/sh -g crispr crispr
 
 RUN addgroup --gid $GROUP_ID crispr
