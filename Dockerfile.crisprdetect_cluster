@@ -63,7 +63,7 @@ RUN apt-get update && apt-get install -y apt-utils \
 
 #RUN groupadd -r crispr && useradd -r -s /bin/sh -g crispr crispr
 
-#RUN addgroup --gid $GROUP_ID crispr
+RUN addgroup --gid $GROUP_ID crispr
 RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID crispr
 
 RUN cpanm Parallel::ForkManager
