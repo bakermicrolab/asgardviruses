@@ -22,7 +22,7 @@ RUN mkdir -p /build
 ARG USER_ID
 ARG GROUP_ID
 
-#RUN addgroup --gid $GROUP_ID crispr
+RUN addgroup --gid $GROUP_ID crispr
 RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID crispr
 
 #RUN groupadd -r crispr && useradd -r -s /bin/sh -g crispr crispr

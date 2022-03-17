@@ -69,6 +69,19 @@ default=11, help="CD-HIT-EST word length. Default = 11")
 
 opts = parser.parse_args()
 #==============================================================================
+#Create the output directories
+try:
+    output_paths = {p: os.path.join(opts.out_root, p) for p in ['CRISPRDetect']}
+
+    for key, value in output_paths.items():
+        if not os.path.isdir(value):
+            os.makedirs(value)
+        else:
+            pass
+except:
+    print('no --out_root specified')
+    logging.error('Cannot make output directories, no --out_root specified')
+#==============================================================================
 #Set up logger
 logging_format = '%(levelname)s %(asctime)s - $(message)s'
 if opts.joblog:
@@ -83,20 +96,6 @@ else:
     level = logging.DEBUG, format = logging_format)
 
 logger = logging.getLogger()
-#==============================================================================
-#Create the output directories
-try:
-    output_paths = {p: os.path.join(opts.out_root, p) for p in ['CRISPRDetect']}
-
-    for key, value in output_paths.items():
-        if not os.path.isdir(value):
-            os.makedirs(value)
-        else:
-            pass
-except:
-    print('no --out_root specified')
-    logging.error('Cannot make output directories, no --out_root specified')
-
 
 #==============================================================================
 nt_fasta = opts.fasta_file
